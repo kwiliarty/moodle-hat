@@ -14,7 +14,7 @@ class moodle::install {
     group => "www-data",
   }->
   exec { "git_clean": 
-    command => "/usr/bin/git clean -d -f -f",
+    command => "/usr/bin/git clean -d -f -f && /usr/bin/git submodule update -f",
   }->
   exec { "install_moodle":
     command => "/usr/bin/php admin/cli/install_database.php --fullname='MoodleHat: ${::instance::moodleversion}' --shortname='HAT: ${::instance::moodleversion}' --adminuser=admin --adminpass=P4ssw0rd! --agree-license",
